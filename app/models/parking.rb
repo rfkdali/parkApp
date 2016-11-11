@@ -1,7 +1,7 @@
 class Parking < ActiveRecord::Base
   belongs_to :user
 
-  STEP_PROCESS = {
+  ROLES_PROCESS = {
     commercial: [
       "Appel client",
       "Prise de RDV",

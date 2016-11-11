@@ -24,9 +24,23 @@ class ParkingsController < ApplicationController
     end
   end
 
+  def edit
+    @parking = Parking.find(params[:id])
+  end
+
+  def update
+    @parking = Parking.find(params[:id])
+
+    if @parking.update(parking_params)
+      redirect_to @parking
+    else
+      render @parking
+    end
+  end
+
   private
 
   def parking_params
-    params.require(:parking).permit(:name)
+    params.require(:parking).permit(:name, :process_step)
   end
 end

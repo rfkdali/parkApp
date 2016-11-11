@@ -11,16 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161109151403) do
+ActiveRecord::Schema.define(version: 20161111154409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "parkings", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.integer  "user_id"
+    t.string   "process_step"
   end
 
   add_index "parkings", ["user_id"], name: "index_parkings_on_user_id", using: :btree
