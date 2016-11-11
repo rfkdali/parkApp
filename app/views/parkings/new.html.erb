@@ -1,0 +1,11 @@
+<%= form_for @parking do |p| %> 
+  <div>
+    <%= p.label :name, "Nom du parking" %>
+    <%= p.text_field :name %>
+  </div>
+
+
+  <%= submit_tag "Create" %>
+<% end %>
+
+<%= available_step_process current_user.role %>  

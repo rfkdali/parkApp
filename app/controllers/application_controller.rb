@@ -3,4 +3,13 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :authenticate_user!
+
+  before_filter :update_sanitized_params, if: :devise_controller?
+
+  protected
+
+  # To permit role attribute (user registration)
+  def update_sanitized_params
+    devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:email, :name, :password, :password_confirmation, :role)}
+  end
 end

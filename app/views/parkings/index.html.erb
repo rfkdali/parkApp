@@ -1,0 +1,16 @@
+<nav>
+  <ul>
+    <li>
+      <%= link_to "New", new_parking_path %>
+    </li>
+  </ul>  
+</nav>
+
+<section>
+  <% @parkings.each do |p| %>
+    <div>
+      <%= p.name %>
+      <%= p.user_id %>
+    </div>
+  <% end %>  
+</section>
