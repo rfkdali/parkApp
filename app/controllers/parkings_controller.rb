@@ -1,4 +1,5 @@
 class ParkingsController < ApplicationController
+  before_action :set_parking, only: [:show, :edit, :update]
     
   def index
     @parkings = Parking.all
@@ -10,7 +11,6 @@ class ParkingsController < ApplicationController
   end
 
   def show
-    @parking = Parking.find(params[:id])
   end
 
   def create
@@ -18,18 +18,16 @@ class ParkingsController < ApplicationController
     @parking = @user.parkings.new(parking_params)
 
     if @parking.save
-      redirect_to @parking
+      redirect_to parkings_path
     else
       render 'new'
     end
   end
 
   def edit
-    @parking = Parking.find(params[:id])
   end
 
   def update
-    @parking = Parking.find(params[:id])
 
     if @parking.update(parking_params)
       redirect_to @parking
@@ -39,6 +37,10 @@ class ParkingsController < ApplicationController
   end
 
   private
+
+  def set_parking
+    @parking = Parking.find(params[:id])
+  end
 
   def parking_params
     params.require(:parking).permit(:name, :process_step)

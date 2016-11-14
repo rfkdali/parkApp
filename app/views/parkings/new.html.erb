@@ -1,13 +1,16 @@
-<%= form_for @parking do |p| %> 
+<%= simple_form_for @parking do |p| %> 
   <div>
-    <%= p.label :name, "Nom du parking" %>
-    <%= p.text_field :name %>
+    <%= p.input :name, label:"Nom du parking" %>
+  </div>
+
+  <div class="form-group">
+    <label>Créateur</label>
+    <input type="text" name="createur" value="<%= current_user.name %>" class="form-control" disabled>
   </div>
 
   <div>
-    <%= p.label :process_step, "Etape du process" %>
-    <%= p.select :process_step, available_step_process(current_user.role) %>
+    <%= p.input  :process_step, collection:available_step_process(current_user.role), label:"Etape du process", include_blank: false %>
   </div>
 
-  <%= submit_tag "Create" %>
+  <%= p.submit "Create", class: "btn btn-primary" %>
 <% end %>

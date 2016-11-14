@@ -1,17 +1,45 @@
-<nav>
-  <ul>
-    <li>
-      <%= link_to "New", new_parking_path %>
-    </li>
-  </ul>  
-</nav>
+<table class="table table-bordered">
+  <tr>  
+    <td>
+      Nom
+    </td>
+    <td>
+      Etape du process
+    </td>
+    <td>
+      Créateur
+    </td>
+    <td>
+      Crée le
+    </td>
+    <td>
+      Mis à jour
+    </td>
+    <td>
+      Actions
+    </td>
+  </tr>
 
-<section>
   <% @parkings.each do |p| %>
-    <div>
-      <%= p.name %>
-      <%= p.user_id %>
-      <%= p.process_step %>
-    </div>
-  <% end %>  
-</section>
+    <tr>
+      <td>
+        <%= p.name %>
+      </td>
+      <td>  
+        <%= p.process_step %>
+      </td>
+      <td>
+        <%= p.user.name %>
+      </td>
+      <td>
+        <%= p.created_at.strftime("%m/%d/%Y") %>
+      </td>
+      <td>
+        <%= p.updated_at.strftime("%m/%d/%Y") %>
+      </td>
+      <td>
+        <%= link_to "Editer", edit_parking_path(p), class: "btn btn-primary" %>
+      </td>
+    </tr>
+  <% end %> 
+</table>

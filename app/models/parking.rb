@@ -1,6 +1,9 @@
 class Parking < ActiveRecord::Base
   belongs_to :user
 
+  validates :name, presence: true
+  validates :process_step, presence: true
+
   ROLES_PROCESS = {
     commercial: [
       "Appel client",
